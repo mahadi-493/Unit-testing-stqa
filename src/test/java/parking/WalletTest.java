@@ -163,6 +163,15 @@ class WalletTest {
 
     }
 
+    @Test
+    void transferNullAcAmount() {
+        Wallet mahadiWallet = new Wallet(100.0);
+
+        assertThrows(NullPointerException.class, () -> {
+            mahadiWallet.transferFunds(null, 40.0);
+        });
+        assertEquals(60.0, mahadiWallet.getBalance());
+    }
 
 
 
