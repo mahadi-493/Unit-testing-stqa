@@ -1,148 +1,173 @@
-# Assignment Announcement: Unit Testing — Parking Slot Booking (With Intentional Defects)
-
-> **Our goal is not only to find bugs, but also to build a reusable, well-structured test suite**
-
-* **Team Members:** Individual or a group of maximum 4 students. You may or may not work in your previous assignment team.
-* **Deadline:** **One week after the assignment is announced**
+# Unit Testing Report: Parking Slot Booking (With Intentional Defects)
 
 ---
 
-## Objective
+## 0) Team Members
 
-You will read the provided Java codebase and design comprehensive **JUnit tests** for each class. Your tests must both validate intended behaviors and reveal defects. You will also submit a short report documenting **why** each test exists, its **verdict**, and any **comments/observations**, plus a **separate defects list**.
-
-> You will find the documentation in `documentation.md` file and the codebase in the `src/` directory.
-
-**No need to fix the code.** Your job is to test it, document bugs.
-
----
-
-## Evaluation
-
-| Component                                          |            | Marks  |
-|----------------------------------------------------|------------|--------|
-| Finding bugs (defects list, quality & correctness) | Team       | 2      |
-| Killing mutants (mutation score via PITest)        | Team       | 2      |
-| Report + submission guideline compliance           | Team       | 2      |
-| Viva on individual contribution                    | Individual | 4      |
-| **Total**                                          |            | **10** |
-
----
-## Finding Bugs
-A Google Form will be provided to submit the bugs you find. You will need to provide the following information for each bug::
-* **Defect ID** (e.g. D1, D2, …) [You may reuse the same ID later to update the bug status]
-* **Class.Method** where the defect was found.
-* **Description** of the defect.
-
-## Mutation Testing
-
-Your tests will be evaluated with **PITest**, a mutation testing tool. 
-PIT introduces small artificial bugs ("mutants") into the code and checks whether your tests catch them. This means:
-
-> A high mutation score will not guarantee full marks — you must also explain **why** your tests kill or fail to kill each mutant in your report.
-
-**You should run and verify your tests locally before submitting.**
-This can be done either in your IDE or via the command line. If you are using Maven, run:
-
-```
-mvn org.pitest:pitest-maven:mutationCoverage
-```
-
-The report (`target/pit-reports/`) shows exactly which lines have surviving mutants — i.e. where your tests are too weak to notice a bug. Use it to strengthen your test suite, and **include the generated report in your submission** (see ZIP structure below).
-
-**Some students may be selected for a short **live walkthrough**: you'll be asked to explain 2–3 of your own tests — what they check and why, and what would happen if a specific line of code were subtly changed. This is straightforward if you wrote and understood your own tests.**
+| Student ID   | Student Name       |
+| :----------- | :----------------- |
+| `0112230493` | Mahadi Hasan       |
+| `0112230527` | Abdullah Al Fahmi  |
+| `0112230950` | Istiauq Ahmed Siam |
 
 ---
 
-## What to Submit
+## A) Test Case List
 
-Submit a **single ZIP** named exactly:
-
-```
-<student_id>_unit_test.zip      e.g. 011223445_011223446.zip
-```
-
-**Inside the ZIP:**
-
-```
-test/
-  VehicleTest.java
-  WalletTest.java
-  ParkingSlotTest.java
-  BookingTest.java
-  ParkingSystemTest.java
-pit-reports/
-  (your generated target/pit-reports/ folder, as-is)
-<student_id>_unit_test_report.md
-```
-
-* Put **only your test files** in `test/`. **Do not include** the source code, class files or build files under test.
-* Include your **PIT report folder** exactly as generated — do not edit or trim it.
-* The **Markdown** report format is described below.
-* **Ensure the ZIP structure is exactly as shown**. An automated script will run your tests against our reference build and cross-check against your submitted mutation report.
-
-**Group submissions:** submit **one ZIP per team** — one `test/` directory, one `pit-reports/` folder, and one report, shared jointly, **not one contribution appended after another**. The test suite should read as a single coherent suite, and the report should read as one team's analysis, not four separate write-ups pasted together (see report structure below — this applies section by section, not just the contribution list at the end).
-
----
-
-## Report Requirements (`011223445_011223446_unit_test_report.md`)
-> **DO NOT WRITE YOUR REPORT USING AI.** You may use AI tools to check grammar, spelling, or formatting, but **all content must be your own work**. Any violation will result in a score of 0 for the assignment. Share your AI conversations(prompts) if you used it to correct grammar or spelling or formatting.
-
-
-### 0) Team members
-* Student Id and Name of team members.
-
-### A) Test Case List (table)
-
-For every test you wrote, include a row with the following columns:
-
-* **Test ID**.
-* **Class.Method** under test.
-* **Why this test?** should state the specific rule/edge case.
-* **Verdict** is the test outcome against the current code.
-* **Comments/Observations** on behavior, exceptions, edge cases, etc.
-
-### B) Defects List (A separate table / list)
-
-List **each discovered defect** with a suggested fix:
-* **Defect ID**.
-* **Class.Method** where the defect was found.
-* **Description** of the defect.
-
-### C) Mutant Analysis (One per each member)
-
-* Report your **overall mutation score** (from your PIT report).
-* Name **one mutant your tests kill**, and explain in 2–3 sentences what behavior your test verifies that catches it.
-* Name **one surviving mutant** (if any, after your best effort), and explain why it's hard to kill or why it may be an equivalent mutant.
-
-### D) Individual Contribution
-* A concise (NOT verbose) breakdown of the tasks performed by each team member
-
----
-
-## Running Tests
-
-* Your tests should compile & run in a standard JUnit 5 + Maven/Gradle setup, with PIT configured to produce a mutation report as described above.
-* Do not modify the source code under `src/`.
-* Design your tests to be **order-independent** — the codebase has global/static state; call any reset method provided before each test if needed.
-
-**Setting up the project:** You may set up your own Maven/Gradle project and PIT configuration if you're comfortable doing so. If you'd rather not deal with the setup, a working boilerplate will be shared separately — you can just write your tests inside it. Either way, your final submission must produce a mutation report when `mvn org.pitest:pitest-maven:mutationCoverage` (or your Gradle equivalent) is run.
-
----
-
-## Academic Integrity
-
-* **Any use of AI tools (ChatGPT, Claude, Copilot, or similar) at any stage of this assignment — writing tests, writing the report, drafting explanations, or anything else — is strictly prohibited and will be penalized, even if disclosed.** This applies to every part of the submission, including the report.
-* **Any other form of unfair means** (plagiarism, sharing code between teams, etc.) is also strictly prohibited.
-* **Penalty:** score **0** on this assignment **and** deduction from other assessments.
+| Test ID  | Class.Method Under Test                  | Why This Test? (Rule / Edge Case)                        | Verdict  | Comments / Observations                                          |
+| :------- | :--------------------------------------- | :------------------------------------------------------- | :------- | :--------------------------------------------------------------- |
+| **TC01** | `Wallet.getBalance`                      | Check default balance is 0.0 and initial balance is set. | **Pass** | Initial balances match constructor inputs.                       |
+| **TC02** | `Wallet(double)`                         | Check constructor with negative balance.                 | **Pass** | **Defect D8:** Accepts negative balance without error.           |
+| **TC03** | `Wallet.addFunds`, `deductFunds`         | Test normal deposit and deduction.                       | **Pass** | Updates balance correctly.                                       |
+| **TC04** | `Wallet.addFunds`                        | Test adding 0 amount.                                    | **Pass** | Throws `InvalidAmountException`.                                 |
+| **TC05** | `Wallet.addFunds`                        | Test adding negative amount.                             | **Pass** | Throws `InvalidAmountException`.                                 |
+| **TC06** | `Wallet.deductFunds`                     | Test deducting partial and full balance.                 | **Pass** | Balance reduces down to 0.0 successfully.                        |
+| **TC07** | `Wallet.deductFunds`                     | Test deducting negative amount.                          | **Pass** | Throws `InvalidAmountException`.                                 |
+| **TC08** | `Wallet.deductFunds`                     | Test deducting more than balance.                        | **Pass** | Throws `InsufficientFundsException`.                             |
+| **TC09** | `Wallet.transferFunds`                   | Test normal transfer between wallets.                    | **Pass** | Sender deducted and receiver credited.                           |
+| **TC10** | `Wallet.transferFunds`                   | Test transferring exact full balance.                    | **Pass** | Sender becomes 0.0.                                              |
+| **TC11** | `Wallet.transferFunds`                   | Test transfer with low balance.                          | **Pass** | Throws `InsufficientFundsException`.                             |
+| **TC12** | `Wallet.transferFunds`                   | Test transfer to null wallet.                            | **Pass** | **Defect D5:** Sender loses money before NPE is thrown.          |
+| **TC13** | `Wallet.transferFunds`                   | Test transfer with 0 and negative values.                | **Pass** | Throws `InvalidAmountException`.                                 |
+| **TC14** | `Vehicle(int, VehicleType, double)`      | Check vehicle constructor and basic getters.             | **Pass** | Sets ID, type, and balance.                                      |
+| **TC15** | `Vehicle.getVehicleId`                   | Check getting vehicle ID.                                | **Pass** | Returns correct ID.                                              |
+| **TC16** | `Vehicle.getVehicleType`                 | Check getting vehicle type.                              | **Pass** | Returns `VehicleType.BUS`.                                       |
+| **TC17** | `Vehicle.getBalance`                     | Check getting balance.                                   | **Pass** | Returns wallet balance.                                          |
+| **TC18** | `Vehicle(int, VehicleType, double)`      | Check vehicle properties together.                       | **Pass** | All fields set properly.                                         |
+| **TC19** | `Vehicle.getWallet`                      | Check balance update through wallet.                     | **Pass** | Balance updates after adding funds.                              |
+| **TC20** | `Vehicle(int, VehicleType, Wallet)`      | Check passing null wallet.                               | **Pass** | **Defect D10:** Null wallet accepted; crashes on `getBalance()`. |
+| **TC21** | `Vehicle(int, VehicleType, double)`      | Check negative vehicle balance.                          | **Pass** | **Defect D9:** Accepts negative initial balance.                 |
+| **TC22** | `ParkingSlot(...)`                       | Check slot initialization.                               | **Pass** | Slot defaults to active with 0 balance.                          |
+| **TC23** | `ParkingSlot.getSlotId`                  | Check getting slot ID.                                   | **Pass** | Returns slot ID string.                                          |
+| **TC24** | `ParkingSlot.getSlotType`                | Check getting slot type.                                 | **Pass** | Returns `ParkingSlotType.COMPACT`.                               |
+| **TC25** | `ParkingSlot.getBalance`                 | Check initial slot balance.                              | **Pass** | Starts at 0.0.                                                   |
+| **TC26** | `ParkingSlot.getBookings`                | Check slot bookings list.                                | **Pass** | Starts with empty list.                                          |
+| **TC27** | `ParkingSlot.deactivate`                 | Check deactivating a slot.                               | **Pass** | Slot becomes inactive.                                           |
+| **TC28** | `ParkingSlot.activate`                   | Check reactivating a slot.                               | **Pass** | Slot becomes active again.                                       |
+| **TC29** | `ParkingSlot.isCompatible`               | Check inactive slot compatibility.                       | **Pass** | Inactive slot returns false for all vehicles.                    |
+| **TC30** | `ParkingSlot.isCompatible`               | Check Motorcycle on Compact and Regular.                 | **Pass** | Returns true for both.                                           |
+| **TC31** | `ParkingSlot.isCompatible`               | Check Car on Regular and Large.                          | **Pass** | Returns true for compatible slots.                               |
+| **TC32** | `ParkingSlot.isCompatible`               | Check Bus on Compact and Large.                          | **Pass** | Returns true only for Large.                                     |
+| **TC33** | `ParkingSlot.isCompatible`               | Check Bicycle on all slot types.                         | **Pass** | Returns true for all 4 slots.                                    |
+| **TC34** | `ParkingSlot.isCompatible`               | Check Microcar compatibility.                            | **Pass** | **Defect D6:** Tests missing break in switch case.               |
+| **TC35** | `ParkingSlot.isCompatible`               | Check Truck compatibility.                               | **Pass** | Returns false for all slot types.                                |
+| **TC36** | `ParkingSlot.isAvailable`                | Check empty slot availability.                           | **Pass** | Returns true when no bookings exist.                             |
+| **TC37** | `ParkingSlot.isAvailable`                | Check touching start/end boundaries.                     | **Pass** | Returns true for non-overlapping boundary times.                 |
+| **TC38** | `ParkingSlot.isAvailable`                | Check overlapping time slots.                            | **Pass** | Returns false when times overlap.                                |
+| **TC39** | `ParkingSlot.isAvailable`                | Check slot availability after cancel.                    | **Pass** | **Defect D2:** Cancelled booking still blocks slot.              |
+| **TC40** | `Booking(...)`                           | Check booking creation and initial status.               | **Pass** | Booking starts as ACTIVE.                                        |
+| **TC41** | `Booking.getBookingId`                   | Check getting booking ID.                                | **Pass** | Returns correct ID.                                              |
+| **TC42** | `Booking.getVehicle`                     | Check getting vehicle.                                   | **Pass** | Returns vehicle instance.                                        |
+| **TC43** | `Booking.getParkingSlot`                 | Check getting slot.                                      | **Pass** | Returns slot instance.                                           |
+| **TC44** | `Booking.getVehicle`, `getParkingSlot`   | Check getting vehicle and slot together.                 | **Pass** | References match inputs.                                         |
+| **TC45** | `Booking.getStartTime`, `getEndTime`     | Check getting start and end times.                       | **Pass** | Returns time values.                                             |
+| **TC46** | `Booking(...)`                           | Check booking with negative fare amount.                 | **Pass** | **Defect D12:** Accepts negative amount without error.           |
+| **TC47** | `Booking.completeBooking`                | Check completing an active booking.                      | **Pass** | Status changes to COMPLETED.                                     |
+| **TC48** | `Booking.cancelBooking`                  | Check cancelling an active booking.                      | **Pass** | Status changes to CANCELLED.                                     |
+| **TC49** | `Booking.completeBooking`                | Check completing a cancelled booking.                    | **Pass** | **Defect D11:** Overwrites CANCELLED to COMPLETED.               |
+| **TC50** | `Booking.cancelBooking`                  | Check cancelling a completed booking.                    | **Pass** | **Defect D11:** Overwrites COMPLETED to CANCELLED.               |
+| **TC51** | `ParkingSystem.resetForTesting`          | Check system state after reset.                          | **Pass** | Lists are cleared and rate reset to 10.0.                        |
+| **TC52** | `ParkingSystem.getInstance`              | Check singleton instance.                                | **Pass** | Returns same singleton instance.                                 |
+| **TC53** | `ParkingSystem.addVehicle`               | Check adding a vehicle to system.                        | **Pass** | Vehicle is saved in list.                                        |
+| **TC54** | `ParkingSystem.addParkingSlot`           | Check adding a slot to system.                           | **Pass** | Slot is saved in list.                                           |
+| **TC55** | `ParkingSystem.setPARKING_RATE_PER_HOUR` | Check changing hourly rate.                              | **Pass** | Rate changes to 15.0.                                            |
+| **TC56** | `ParkingSystem.setSYSTEM_WALLET`         | Check changing system wallet.                            | **Pass** | Wallet and balance update.                                       |
+| **TC57** | `ParkingSystem.getAvailableParkingSlots` | Check finding available slots.                           | **Pass** | Returns compatible and free slots.                               |
+| **TC58** | `ParkingSystem.book`                     | Check booking when end is before start.                  | **Pass** | Throws `IllegalBookingTimeException`.                            |
+| **TC59** | `ParkingSystem.book`                     | Check booking when end equals start.                     | **Pass** | Throws `IllegalBookingTimeException`.                            |
+| **TC60** | `ParkingSystem.book`                     | Check booking incompatible slot.                         | **Pass** | **Defect D7:** Throws standard `IllegalArgumentException`.       |
+| **TC61** | `ParkingSystem.book`                     | Check standard car booking and charging.                 | **Pass** | Computes 20.0 fare and transfers funds.                          |
+| **TC62** | `ParkingSystem.book`                     | Check booking under 1 hour duration.                     | **Pass** | **Defect D3:** 0.0 fare throws `InvalidAmountException`.         |
+| **TC63** | `ParkingSystem.book`                     | Check motorcycle pricing on compact slot.                | **Pass** | Calculates correct 8.0 fare.                                     |
+| **TC64** | `ParkingSystem.book`                     | Check bus pricing on large slot.                         | **Pass** | Calculates correct 60.0 fare.                                    |
+| **TC65** | `ParkingSystem.book`                     | Check booking with insufficient funds.                   | **Pass** | **Defect D1:** Throws exception but unpaid booking is saved.     |
+| **TC66** | `ParkingSystem.completeBooking`          | Check booking completion revenue split.                  | **Pass** | 80% goes to slot and 20% stays in system.                        |
+| **TC67** | `ParkingSystem.completeBooking`          | Check completing booking multiple times.                 | **Pass** | **Defect D4:** Second call drains system wallet.                 |
+| **TC68** | `ParkingSystem.cancelBooking`            | Check booking cancellation refund.                       | **Pass** | 90% refunded to vehicle, 10% kept.                               |
+| **TC69** | `ParkingSystem.cancelBooking`            | Check cancelling booking multiple times.                 | **Pass** | **Defect D4:** Second call attempts repeat refund.               |
 
 ---
 
-## Reminders
+## B) Defects List
 
-* **Design tests to be order-independent** and resilient to the system's static global state.
-* Document current behavior even when you believe it's wrong; reflect that in verdict and defects sections.
-* **A high mutation score with a vague or incorrect mutant analysis will not receive full credit** — the goal is understanding, not just a number.
+| Defect ID | Class.Method                                      | Description                                                                                                                                                              | Suggested Fix                                                                                        |
+| :-------- | :------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- |
+| **D1**    | `Wallet` (Constructor)                            | **Negative Initial Balance Allowed in Wallet:** `Wallet(double)` accepts negative balance values without validation.                                                     | Validate `if (balance < 0) throw new InvalidAmountException();` in constructor.                      |
+| **D2**   | `Vehicle` (Constructor)                           | **Null Wallet Reference Allowed:** `Vehicle(int, VehicleType, Wallet)` accepts null wallet, causing NPE on `getBalance()`.                                               | Validate `if (wallet == null) throw new IllegalArgumentException();` in constructor.                 |
+| **D3**    | `Vehicle` (Constructor)                           | **Negative Vehicle Balance Allowed:** `Vehicle(int, VehicleType, double)` accepts negative balance without validation.                                                   | Validate `if (initialBalance < 0) throw new InvalidAmountException();` in constructor.               |
+| **D4**    | `Wallet.transferFunds`                            | **Funds Lost on Null Destination:** `deductFunds` executes before `toWallet.addFunds`. If destination is null, money is deducted and lost on NPE.                        | Check `if (toWallet == null)` before deducting funds.                                                |
+| **D5**   | `Booking` (Constructor)                           | **Lack of Parameter Validation:** `Booking` constructor does not validate negative amount or invalid times.                                                              | Add constructor validations before assigning fields.                                                 |
+| **D6**   | `Booking` (`completeBooking` / `cancelBooking`)   | **Illegal State Transitions on Terminal States:** Status can be changed from CANCELLED to COMPLETED and vice versa.                                                      | Check `if (bookingStatus != BookingStatus.ACTIVE)` before updating status.                           |
+| **D7**   | `Booking` (`completeBooking` / `cancelBooking`)   | **Illegal State Transitions on Terminal States:** Status can be changed from CANCELLED to COMPLETED and vice versa.                                                      | Check `if (bookingStatus != BookingStatus.ACTIVE)` before updating status.                           |
+| **D8**    | `ParkingSlot.isAvailable`                         | **Cancelled Bookings Block Slots:** `isAvailable` checks all bookings without verifying if status is `ACTIVE`. Cancelled bookings permanently block the slot.            | Add status check: `if (booking.getBookingStatus() == BookingStatus.ACTIVE && ...)` in `isAvailable`. |
+| **D9**    | `ParkingSystem.completeBooking` / `cancelBooking` | **Duplicate Payouts & Refunds (Double Spending):** Neither method checks if booking status is `ACTIVE`. Repeat calls cause multiple payouts or refunds.                  | Check `if (booking.getBookingStatus() != BookingStatus.ACTIVE)` before transferring funds.           |
+| **D10**    | `ParkingSystem.book`                              | **Premature Booking Storage:** Booking is added to system list before fund transfer. If the transfer fails, unpaid booking remains stored in the system.                 | Deduct funds before adding booking to list, or rollback/remove booking on error.                     |
+| **D11**    | `ParkingSlot.isCompatible`                        | **Missing `break` in Switch (`case MICROCAR`):** `case MICROCAR:` lacks a `break;` before `default:`, falling through into `default: return false;`.                     | Add an explicit `break;` in `case MICROCAR:`.                                                        |
+| **D12**    | `ParkingSystem`                                   | **Unused Custom Exceptions:** `IllegalBookingArgumentException` and `InsufficientBalanceException` are declared but never thrown.                                        | Throw declared custom exceptions or clean up unused class definitions.                               |
+| **D13**    | `ParkingSystem.book`                              | **Integer Truncation on Duration (`toHours()`):** `Duration.toHours()` truncates under 1 hour to 0. A 0.0 fare causes wallet transfer to throw `InvalidAmountException`. | Use fractional hours `Duration.toMinutes() / 60.0` or enforce minimum 1 hour.                        |
+
 
 ---
-Best of luck!
+
+## C) Mutant Analysis
+
+### Overall Mutation Score
+
+- **Line Coverage:** ~92%
+- **Mutation Coverage:** ~86%
+- **Test Strength:** ~92% 
+
+---
+
+### Member 1 Analysis: Mahadi Hasan (`0112230493`)
+
+- **Modules Covered:** `Wallet.java` (`WalletTest.java`) and the first half of `ParkingSystem.java`, including system setup, rate and wallet settings, slot availability, and time validation.
+
+- **Killed Mutant:**
+    - **Location:** `Wallet.deductFunds(double amount)`
+    - **Mutation:** Changed `balance >= amount` to `balance > amount`.
+    - **Explanation:** Test `TC06` (`checkBalnceDeduct`) checks when the user deducts the exact wallet balance (`100.0 - 100.0 = 0.0`). The original code allows this, but the mutated code throws `InsufficientFundsException`. The test detects this difference, so the mutant is killed.
+
+- **Surviving Mutant:**
+    - **Location:** `ParkingSystem.getVehicleTypeRate(VehicleType type)`
+    - **Mutation:** Changed the `MICROCAR` rate from `1.5` to `0.0`.
+    - **Explanation:** Our tests did not include a booking with a `MICROCAR`. Therefore, the `MICROCAR` rate code was never executed. Because of this, the mutant survived.
+
+
+### Member 2 Analysis: Abdullah Al Fahmi (`0112230527`)
+
+- **Modules Covered:** `ParkingSlot.java` (`ParkingSlotTest.java`) and the second half of `ParkingSystem.java`, including booking, price calculation, completion, cancellation, refunds, and revenue.
+
+- **Killed Mutant:**
+    - **Location:** `ParkingSlot.isAvailable(LocalDateTime start, LocalDateTime end)`
+    - **Mutation:** Changed `booking.getEndTime().isAfter(startTime)` to `false`.
+    - **Explanation:** Test `TC38` (`checkSlotAvailablityOverlap`) checks whether a slot is unavailable when a new booking overlaps an existing booking. The original code correctly returns `false`. The mutated code incorrectly returns `true`, so the test detects the change and kills the mutant.
+
+- **Surviving Mutant:**
+    - **Location:** `ParkingSystem.parkingSlotTypeMultiplier(ParkingSlotType type)`
+    - **Mutation:** Changed the `HANDICAPPED` multiplier from `1.2` to `0.0`.
+    - **Explanation:** Our tests did not include a booking using a `HANDICAPPED` slot. Therefore, the `HANDICAPPED` multiplier code was not executed, allowing the mutant to survive.
+
+
+### Member 3 Analysis: Istiauq Ahmed Siam (`0112230950`)
+
+- **Modules Covered:** `Vehicle.java` (`VehicleTest.java`) and `Booking.java` (`BookingTest.java`).
+
+- **Killed Mutant:**
+    - **Location:** `Booking.completeBooking()`
+    - **Mutation:** Removed the statement that changes the booking status to `COMPLETED`.
+    - **Explanation:** Test `TC47` (`checkBookingComplete`) calls `completeBooking()` and checks that the status becomes `COMPLETED`. If the status update is removed, the booking remains `ACTIVE`. The test detects this change and kills the mutant.
+
+- **Surviving Mutant:**
+    - **Location:** `Vehicle.toString()`
+    - **Mutation:** Changed the returned string to an empty string `""`.
+    - **Explanation:** Our `VehicleTest` did not test the `toString()` method. Therefore, the test suite could not detect the changed return value, so the mutant survived.
+
+
+## D) Individual Contribution
+
+| Member | Tasks Performed |
+|---|---|
+| **Mahadi Hasan** (`0112230493`) | Developed tests for `WalletTest.java` and the first half of `ParkingSystemTest.java`, including system setup, rate and wallet settings, slot availability, and time validation. |
+| **Abdullah Al Fahmi** (`0112230527`) | Developed tests for `ParkingSlotTest.java` and the second half of `ParkingSystemTest.java`, including booking, price calculation, completion, cancellation, refunds, and revenue. |
+| **Istiauq Ahmed Siam** (`0112230950`) | Developed tests for `VehicleTest.java` and `BookingTest.java`, including vehicle types, wallet balances, booking creation, status changes, and invalid amounts.|
